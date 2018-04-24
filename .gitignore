@@ -1,6 +1,5 @@
-/node_modules
-/vendor
-assets/*
-
-# exception to the rule
-!assets/.gitkeep
+/sass/maps/**.*
+/node_modules/
+/assets/*
+/css/*
+/vendor/

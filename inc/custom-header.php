@@ -14,10 +14,10 @@
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses tp_header_style()
+ * @uses siferds_header_style()
  */
 
-function tp_custom_header_setup() {
+function siferds_custom_header_setup() {
 
 	add_theme_support( 'custom-logo', array(
 			'height'      => 125,
@@ -27,24 +27,24 @@ function tp_custom_header_setup() {
 			'header-text' => array( 'site-title' ),
 			));
 
-	add_theme_support( 'custom-header', apply_filters( 'tp_custom_header_args', array(
+	add_theme_support( 'custom-header', apply_filters( 'siferds_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
 		'width'                  => 1000,
 		'height'                 => 250,
 		'flex-height'            => true,
-		'wp-head-callback'       => 'tp_header_style',
+		'wp-head-callback'       => 'siferds_header_style',
 	) ) );
 }
-add_action( 'after_setup_theme', 'tp_custom_header_setup' );
+add_action( 'after_setup_theme', 'siferds_custom_header_setup' );
 
-if ( ! function_exists( 'tp_header_style' ) ) :
+if ( ! function_exists( 'siferds_header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog.
  *
- * @see tp_custom_header_setup().
+ * @see siferds_custom_header_setup().
  */
-function tp_header_style() {
+function siferds_header_style() {
 	$header_text_color = get_header_textcolor();
 
 	/*

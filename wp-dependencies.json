@@ -1,13 +1,5 @@
 [
   {
-    "name": "Page Builder: Live Composer",
-    "host": "wordpress",
-    "slug": "live-composer-page-builder/ds-live-composer.php",
-    "uri": "https://wordpress.org/plugins/live-composer-page-builder/",
-    "branch": "trunk",
-    "optional": false
-  },
-  {
     "name": "List category posts",
     "host": "wordpress",
     "slug": "list-category-posts/list-category-posts.php",

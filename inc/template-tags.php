@@ -7,11 +7,11 @@
  * @package Todd Productions Inc.
  */
 
-if ( ! function_exists( 'tp_posted_on' ) ) :
+if ( ! function_exists( 'siferds_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-function tp_posted_on() {
+function siferds_posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -39,17 +39,17 @@ function tp_posted_on() {
 }
 endif;
 
-if ( ! function_exists( 'tp_entry_footer' ) ) :
+if ( ! function_exists( 'siferds_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
  */
-function tp_entry_footer() {
+function siferds_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' === get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
-		$categoritp_list = get_the_category_list( esc_html__( ', ', 'tp' ) );
-		if ( $categoritp_list && tp_categorized_blog() ) {
-			printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'tp' ) . '</span>', $categoritp_list ); // WPCS: XSS OK.
+		$categorisiferds_list = get_the_category_list( esc_html__( ', ', 'tp' ) );
+		if ( $categorisiferds_list && siferds_categorized_blog() ) {
+			printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'tp' ) . '</span>', $categorisiferds_list ); // WPCS: XSS OK.
 		}
 
 		/* translators: used between list items, there is a space after the comma */
@@ -83,8 +83,8 @@ endif;
  *
  * @return bool
  */
-function tp_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'tp_categories' ) ) ) {
+function siferds_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'siferds_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -96,27 +96,27 @@ function tp_categorized_blog() {
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( 'tp_categories', $all_the_cool_cats );
+		set_transient( 'siferds_categories', $all_the_cool_cats );
 	}
 
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so tp_categorized_blog should return true.
+		// This blog has more than 1 category so siferds_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so tp_categorized_blog should return false.
+		// This blog has only 1 category so siferds_categorized_blog should return false.
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in tp_categorized_blog.
+ * Flush out the transients used in siferds_categorized_blog.
  */
-function tp_category_transient_flusher() {
+function siferds_category_transient_flusher() {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
 	// Like, beat it. Dig?
-	delete_transient( 'tp_categories' );
+	delete_transient( 'siferds_categories' );
 }
-add_action( 'edit_category', 'tp_category_transient_flusher' );
-add_action( 'save_post',     'tp_category_transient_flusher' );
+add_action( 'edit_category', 'siferds_category_transient_flusher' );
+add_action( 'save_post',     'siferds_category_transient_flusher' );
