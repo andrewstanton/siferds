@@ -15,6 +15,15 @@
 get_header(); ?>
 
 
+	<?php
+		if(is_front_page()){
+			get_template_part( 'template-parts/banner-index');
+		}
+		else {
+			get_template_part( 'template-parts/banner');
+		}
+	?>
+
 
 	<div id="primary" class="content-area post-<?php the_ID(); ?>">
 		<main id="main" class="site-main" role="main">

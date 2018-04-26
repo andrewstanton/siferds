@@ -15,70 +15,54 @@ function siferds_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
-	/**
-	* Adding Custom Controls For Todd Productions Inc.
-	**/
-
 	//Custom Control For Phone Number
-	$wp_customize->add_setting( 'siferds_ohio_phone' , array(
+	$wp_customize->add_setting( 'siferds_email' , array(
+		'default' => 'no-reply@bigtreesonthemove.net',
+		'sanitize_callback' => 'sanitize_email'
+		));
+
+	$wp_customize->add_setting( 'siferds_phone' , array(
 		'default' => '(###)  ### - ####',
-		'sanitize_callback' => 'sanitize_text_field'
-		));
-	$wp_customize->add_setting( 'siferds_michigan_phone' , array(
-		'default' => '(###)  ### - ####',
-		'sanitize_callback' => 'sanitize_text_field'
-		));
-	$wp_customize->add_setting( 'siferds_ohio_address' , array(
-		'sanitize_callback' => 'sanitize_text_field'
-		));
-	$wp_customize->add_setting( 'siferds_michigan_address' , array(
 		'sanitize_callback' => 'sanitize_text_field'
 		));
 
-		$wp_customize->add_control(
-	    new WP_Customize_Control(
-	        $wp_customize,
-	        'siferds_ohio_phone',
-	        array(
-	            'label' => __( 'Ohio Phone', 'tp' ),
-	            'type' => 'text',
+	$wp_customize->add_setting( 'siferds_fb' , array(
+		'default' => 'http://facebook.com/{your facebook page}',
+		'sanitize_callback' => 'sanitize_text_field'
+		));
+
+	$wp_customize->add_control(
+		new WP_Customize_Control(
+			$wp_customize,
+			'siferds_email',
+			array(
+				'label' => __( 'Email', 'big_trees' ),
+				'type' => 'text',
 							'section' => 'title_tagline'
 							)
-	    ));
+		));
 
-		$wp_customize->add_control(
-					new WP_Customize_Control(
-							$wp_customize,
-							'siferds_michigan_phone',
-							array(
-									'label' => __( 'Michigan Phone', 'tp' ),
-									'type' => 'text',
-									'section' => 'title_tagline'
-									)
-					));
+	$wp_customize->add_control(
+		new WP_Customize_Control(
+			$wp_customize,
+			'siferds_phone',
+			array(
+				'label' => __( 'Phone', 'big_trees' ),
+				'type' => 'text',
+							'section' => 'title_tagline'
+							)
+		));
 
-			$wp_customize->add_control(
-						new WP_Customize_Control(
-								$wp_customize,
-								'siferds_ohio_address',
-								array(
-										'label' => __( 'Ohio Address', 'tp' ),
-										'type' => 'text',
-										'section' => 'title_tagline'
-										)
-						));
-
-			$wp_customize->add_control(
-						new WP_Customize_Control(
-								$wp_customize,
-								'siferds_michigan_address',
-								array(
-										'label' => __( 'Michigan Address', 'tp' ),
-										'type' => 'text',
-										'section' => 'title_tagline'
-										)
-						));
-
+	$wp_customize->add_control(
+		new WP_Customize_Control(
+			$wp_customize,
+			'siferds_fb',
+			array(
+				'label' => __( 'Facebook', 'big_trees' ),
+				'type' => 'text',
+							'section' => 'title_tagline'
+							)
+		));
 }
 add_action( 'customize_register', 'siferds_customize_register' );
 

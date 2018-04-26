@@ -11,29 +11,32 @@ uglify = require('gulp-uglify');
 //var connect = require('gulp-connect');
 
 var config = {
-    sassDir: ['./sass/main.scss'],
-    sassOutputDir: './css/',
-    sassWatch: './sass/**/*.scss'
+    publicCSSDir: './css',
+    publicJSCompDir: './js',
+    sassDir: './production/sass/',
+    jsDir: './production/js/'
 }
 
 //keeps gulp from crashing for scss errors & gives sass access to bootstrap
 gulp.task('sass', function() {
-    gulp.src(config.sassDir)
+    gulp.src( config.sassDir + '*.scss')
         .pipe(plumber({ errorHandler: function(err) {
             notify.onError({
                 title: "Gulp error in " + err.plugin,
                 message:  err.toString()
             })(err);
+
             // play a sound once
             gutil.beep();
         }})) 
         .pipe(sass())
-        .pipe(gulp.dest(config.sassOutputDir))
+        .pipe(gulp.dest(config.publicCSSDir))
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(cleanCSS())    
-        .pipe(gulp.dest(config.sassOutputDir));
+        .pipe(cleanCSS())     
+        .pipe(gulp.dest(config.publicCSSDir));
+
 });
 
 gulp.task('scripts', function(){
@@ -56,8 +59,8 @@ gulp.task('scripts', function(){
 });
 
 gulp.task('watch', function() {
-    gulp.watch(config.sassWatch, ['sass']);
-    //gulp.watch(config.jsDir + '*.js', ['scripts']);
+    gulp.watch(config.sassDir + '**/*.scss', ['sass']);
+    gulp.watch(config.jsDir + '*.js', ['scripts']);
 });
 
-gulp.task('default', ['sass', 'watch']);
+gulp.task('default', ['sass', 'scripts', 'watch']);

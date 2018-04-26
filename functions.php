@@ -1,10 +1,10 @@
 <?php
 /**
- * Retrocity functions and definitions
+ * Todd Productions Inc. functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Retrocity
+ * @package Todd Productions Inc.
  */
 
 if ( ! function_exists( 'siferds_setup' ) ) :
@@ -19,10 +19,10 @@ function siferds_setup() {
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on Retrocity, use a find and replace
-	 * to change 'hs' to the name of your theme in all the template files.
+	 * If you're building a theme based on Todd Productions Inc., use a find and replace
+	 * to change 'big_trees' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( 'hs', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'big_trees', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -41,14 +41,11 @@ function siferds_setup() {
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
 	add_theme_support( 'post-thumbnails' );
-	add_image_size( 'siferds-index', 966, 555, true);
-	add_post_type_support( 'page', 'excerpt' );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', 'hs' ),
-		'social' => esc_html__( 'Social', 'hs' ),
-		'footer' => esc_html__( 'Footer', 'hs'),
+		'menu-1' => esc_html__( 'Primary', 'big_trees' ),
+		'footer-menu' => __( 'Footer', 'big_trees' ),
 	) );
 
 	/*
@@ -63,13 +60,13 @@ function siferds_setup() {
 		'caption',
 	) );
 
-	// Add theme support for Custom Logo
-	add_theme_support( 'custom-logo', array(
-		'width' => 245,
-		'height' => 60,
-		'flex-height' => true,
-		'flex-width' => true,
-	));
+
+
+	// Set up the WordPress core custom background feature.
+	add_theme_support( 'custom-background', apply_filters( 'siferds_custom_background_args', array(
+		'default-color' => 'ffffff',
+		'default-image' => '',
+	) ) );
 
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
@@ -90,94 +87,87 @@ function siferds_content_width() {
 add_action( 'after_setup_theme', 'siferds_content_width', 0 );
 
 
-/**
- * Add custom image sizes attribute to enhance responsive image functionality
- * for content images.
+/*
  *
- * @origin Twenty Seventeen 1.0
+ * Add Page Categories
+ * Page Excerpts
  *
- * @param string $sizes A source size value for use in a 'sizes' attribute.
- * @param array  $size  Image size. Accepts an array of width and height
- *                      values in pixels (in that order).
- * @return string A source size value for use in a content image 'sizes' attribute.
  */
-function siferds_content_image_sizes_attr( $sizes, $size ) {
-	if ( is_singular() ) {
-		$width = $size[0];
-		if ( 610 <= $width ) {
-			$sizes = '(min-width: 990px) 720px, (min-width: 1300px) 610px, 95vw';
-		}
-		return $sizes;
+function siferds_pagesetup() {
+	add_post_type_support( 'page', 'excerpt' );
+	// Add category metabox to page
+	register_taxonomy_for_object_type('category', 'page');
 	}
-}
-add_filter( 'wp_calculate_image_sizes', 'siferds_content_image_sizes_attr', 10, 2 );
-
-
-/**
- * Add custom image sizes attribute to enhance responsive image functionality
- * for post thumbnails.
- *
- * @origin Twenty Seventeen 1.0
- *
- * @param array $attr       Attributes for the image markup.
- * @param int   $attachment Image attachment ID.
- * @param array $size       Registered image size or flat array of height and width dimensions.
- * @return string A source size value for use in a post thumbnail 'sizes' attribute.
- */
-function siferds_post_thumbnail_sizes_attr( $attr, $attachment, $size ) {
-	if ( is_singular() ) {
-		$attr['sizes'] = '(min-width: 990px) 720px, (min-width: 1300px) 820px, 95vw';
-	} else {
-		$attr['sizes'] = '(min-width: 990px) 955px, (min-width: 1300px) 966px, 95vw';
-	}
-	return $attr;
-}
-add_filter( 'wp_get_attachment_image_attributes', 'siferds_post_thumbnail_sizes_attr', 10, 3 );
-
-
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function siferds_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'hs' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'hs' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-}
-add_action( 'widgets_init', 'siferds_widgets_init' );
+add_action( 'init', 'siferds_pagesetup' );
 
 /**
  * Enqueue scripts and styles.
  */
 function siferds_scripts() {
+
+	/*
+	 * CSS Files
+	 */
 	
-	//Styles
-	wp_enqueue_style( 'siferds-main', get_template_directory_uri() . '/css/main.min.css' );
-	wp_enqueue_style( 'siferds-fonts', 'https://fonts.googleapis.com/css?family=Allerta|Cabin|Viga' );
-	wp_enqueue_style( 'siferds-fa', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
+	// Sass Compiled File
+	wp_enqueue_style('big-trees-app-css', get_template_directory_uri().'/css/app.min.css');
 
-	wp_enqueue_script( 'siferds-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );
-	wp_localize_script( 'siferds-navigation', 'hsScreenReaderText', array(
-		'expand' => __( 'Expand child menu', 'hs'),
-		'collapse' => __( 'Collapse child menu', 'hs'),
-	));
+	/*
+	 * JS Files
+	 */
+	wp_enqueue_script( 'big-trees-font-awesome', 'https://use.fontawesome.com/releases/v5.0.7/js/all.js', array(), '4.0.0', true );
 
-	wp_enqueue_script( 'siferds-functions', get_template_directory_uri() . '/js/functions.js', array('jquery'), '20161201', true );
+	wp_enqueue_script( 'big-trees-bootstrap-js', get_template_directory_uri() . '/assets/bootstrap/dist/js/bootstrap.min.js', array('jquery'), '3.3.4', true );
 
-	wp_enqueue_script( 'siferds-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'big-trees-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+
+	wp_enqueue_script( 'big-trees-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+
+	wp_enqueue_script( 'big-trees-appjs', get_template_directory_uri() . '/js/app.min.js', array('jquery'), '20170926', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'siferds_scripts' );
+
+
+/**
+ * Remove Options from toolbar
+ */
+ function siferds_remove_admin_bar_links() {
+	global $wp_admin_bar;
+
+	//Remove WordPress Logo Menu Items
+	$wp_admin_bar->remove_menu('wp-logo'); // Removes WP Logo and submenus completely, to remove individual items, use the below mentioned codes
+	$wp_admin_bar->remove_menu('about'); // 'About WordPress'
+	$wp_admin_bar->remove_menu('wporg'); // 'WordPress.org'
+	$wp_admin_bar->remove_menu('documentation'); // 'Documentation'
+	$wp_admin_bar->remove_menu('support-forums'); // 'Support Forums'
+	$wp_admin_bar->remove_menu('feedback'); // 'Feedback'
+
+
+	$wp_admin_bar->remove_menu('themes'); // 'Themes'
+	$wp_admin_bar->remove_menu('widgets'); // 'Widgets'
+	$wp_admin_bar->remove_menu('menus'); // 'Menus'
+
+	// Remove Comments Bubble
+	$wp_admin_bar->remove_menu('comments');
+
+	//Remove Update Link if theme/plugin/core updates are available
+	$wp_admin_bar->remove_menu('updates');
+
+	//Remove '+ New' Menu Items
+	$wp_admin_bar->remove_menu('new-content'); // Removes '+ New' and submenus completely, to remove individual items, use the below mentioned codes
+	$wp_admin_bar->remove_menu('new-post'); // 'Post' Link
+	$wp_admin_bar->remove_menu('new-media'); // 'Media' Link
+	$wp_admin_bar->remove_menu('new-link'); // 'Link' Link
+	$wp_admin_bar->remove_menu('new-page'); // 'Page' Link
+	$wp_admin_bar->remove_menu('new-user'); // 'User' Link
+ }
+ 
+ add_action( 'wp_before_admin_bar_render', 'siferds_remove_admin_bar_links' );
+
 
 /**
  * Implement the Custom Header feature.
@@ -194,6 +184,7 @@ require get_template_directory() . '/inc/template-tags.php';
  */
 require get_template_directory() . '/inc/extras.php';
 
+
 /**
  * Customizer additions.
  */
@@ -203,17 +194,6 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
-
-/**
- * Load SVG icon functions.
- */
-require get_template_directory() . '/inc/icon-functions.php';
-
-/**
- * Load custom widgets
- */
-require get_template_directory() . "/widgets/recent-comments.php";
-require get_template_directory() . "/widgets/recent-posts.php";
 
 
 //Load Plugin Dependency
