@@ -1,0 +1,92 @@
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+	color: $color__text-input;
+	border: 1px solid $color__border-input;
+	border-radius: 3px;
+	padding: 3px;
+
+	&:focus {
+		color: $color__text-input-focus;
+	}
+}
+
+select {
+	border: 1px solid $color__border-input;
+}
+
+textarea {
+	width: 100%;
+}
+
+/*
+ * Contact Form 7 Plugin
+ */
+.wpcf7 {
+	label {
+		color: $red;
+		font-family: $header_font;
+		font-size: 1.4em;
+		width: 100%;
+	}
+	.wpcf7-form-control-wrap {
+		width: 100%;
+	}
+	input[type=text], input[type=email], textarea, select {
+		padding: 0.8em;
+		border-radius: 0;
+		border: $grey 1px solid;
+		width: 100%;
+		margin-bottom: 0.5em;
+		font-size: 1rem;
+		color: $grey;
+		font-family: $body_font !important;
+
+		&:focus {
+			font-style: normal;
+			color: darken($grey, 30%);
+		}
+
+	}
+	textarea {
+		height: 120px;
+	}
+	
+	input[type=submit].btn {
+		font-size: 1.5em;
+		background: $red;
+		color: #FFF !important;
+		padding: $button_padd;
+		border-radius: 0 !important;
+	}
+
+	div.wpcf7-response-output {
+		padding: 1em;
+		text-align: center;
+		color: #FFF;
+		margin: 0;
+	}
+
+	div.wpcf7-mail-sent-ok {
+		background-color: rgb(31, 168, 31);
+		border: none;
+	}
+	
+	div.wpcf7-mail-sent-ng, div.wpcf7-spam-blocked, div.wpcf7-validation-errors {
+		background-color: rgb(241, 50, 50);
+		border: none;
+	}
+}

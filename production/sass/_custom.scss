@@ -1,0 +1,232 @@
+//Custom Font File
+
+body, html {
+    font-size: 16px;
+}
+
+// Header
+#top-bar {
+    padding: 0.5em 0em;
+    background-color: $red;
+    color: #FFF;
+    text-align: right;
+}
+
+/* Change */
+header {
+    padding: 1em 0;
+    background-color: #FFF;
+    color: $red;
+
+    .logo a {
+        color: $light_red;
+        font-family: $logo_font;
+        font-size: 1.4em;
+
+        .tree-block {
+            display: inline-block;
+            padding: 5px 15px;
+            font-size: 28px;
+            color: #FFF;
+            background: $red;
+            margin-right: 10px;
+        }
+
+        .sub-logo {
+            color: $red;
+            font-family: $header_font;
+            font-size: 0.9em;
+            display: block;
+            margin-top: -0.3em;
+        }
+
+        &:hover {
+            color: $red;
+            text-decoration: none;
+            .tree-block {
+                background-color: $dark_red;
+            }
+        }
+
+        .row {
+            .col, .col-auto {
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+        }
+
+    }
+}
+
+// Body Content
+#content {
+    background: #FFF;
+    color: $text;
+}
+
+//Banner
+.slide-image-background {
+    height: 400px;
+    background-position: center center;
+    background-size: cover;
+}
+.internal .slide-image-background {
+    height: 200px;
+    background-attachment: inherit;
+    background-position: center center;
+}
+.index .carousel-caption {
+    bottom: 10px;
+
+    h3 {
+        font-size: 1.8em;
+        margin: 0;
+        margin-left: 0.8em;
+        display: inline-block;
+    }
+    span.excerpt {
+        display: block;
+        font-size: 1.2em;
+        line-height: 0.8em;
+        margin-bottom: 1.4em;
+    }
+}
+.internal .carousel-caption {
+    h2 {
+        font-size: 3.5em;
+    }
+}
+
+.social-icons {
+    font-size: 1.5em;
+}
+
+
+// Buttons
+.btn {
+    padding: $button_padd;
+    font-family: $header_font;
+    font-size: 28px;
+
+    &.btn-light {
+       color: $red !important; 
+    }
+
+    .svg-inline--fa {
+        margin-right: 0.2em;
+    }
+
+}
+
+
+// Footer
+footer {
+    padding: 2em 0 6em 0;
+    background: $grey;
+    color: #FFF;
+
+    a, a:link, a:visited, a:hover, a:active {
+        color: #FFF;
+    }
+
+    .footer-note {
+        line-height: 1.2em;
+
+        small {
+            font-size: 12px;
+        }
+    }
+
+}
+
+
+
+/*
+ * xs only
+ */
+@media ( max-width: map-get($grid-breakpoints, sm) ){
+    
+    body, html {
+        font-size: 14px;
+    }
+    
+    #top-bar {
+        text-align: center;
+    }
+
+    .btn {
+        padding: $mobile_button_padd;
+        font-size: 1.4em;
+    }
+    .logo {
+        margin-bottom: 1.5em; 
+        .row {
+        width: 240px;
+        margin: auto;
+        }
+    }
+    .slide-image-background {
+        height: 250px;
+    }
+    .carousel-caption {
+        h2 {
+            line-height: 1em !important;
+            font-size: 2.5em !important;
+        }
+        span.excerpt {
+            line-height: 1.5em !important;
+        }
+    }
+    .index .carousel-caption h3 {
+        display: none;
+    }
+    .internal .slide-image-background {
+        height: 150px;
+    }
+    .internal .carousel-caption {
+        h2 {
+            font-size: 4em;
+        }
+    }
+}
+
+.content-body .blueimp-gallery {
+    display: none !important;
+}
+
+
+/*
+ * sm only
+ */
+@media ( min-width: map-get($grid-breakpoints, sm)) and (max-width: map-get($grid-breakpoints, md)){
+    .slide-image-background {
+        height: 350px;
+    }
+}
+
+/*
+ * sm and xs
+ */
+@media (max-width: map-get($grid-breakpoints, md)){
+    .index .carousel-caption {
+        width: 100%;
+        bottom: 5%;
+        top: inherit;
+        left: inherit;
+        right: inherit;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}
+
+/*
+ * md only
+ */
+@media ( min-width: map-get($grid-breakpoints, md)) and (max-width: map-get($grid-breakpoints, lg)){
+}
+
+/*
+ * lg only
+ */
+@media ( min-width: map-get($grid-breakpoints, lg)){
+}

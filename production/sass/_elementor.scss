@@ -1,0 +1,112 @@
+/*
+ *
+ * SASS File To Overwrite Elementor Style Rules
+ *
+ */
+.elementor {
+    
+    .section {
+        padding-top: 2em !important;
+        padding-bottom: 2em !important;
+        &.grey {
+            background-color: darken(#FFF, 5%) !important;
+        }
+    }
+
+    //Elements
+    h1, h2, h3, h4, h5, h6, h7, h8, h9  {
+        font-family: $header_font !important;
+        margin-top: 0px !important;
+        margin-bottom: 0.5em;
+        color: $red !important;
+        text-align: center !important;
+    }
+
+    h1 {
+        font-size: 3em !important;
+    }
+
+    p, ul > li {
+        font-family: $body_font !important;
+        color: $text !important;
+        font-size: 1em !important;
+    }
+
+    a {
+        font-family: $text !important;
+        color: $red;
+
+        &:hover, &:focus {
+            color: $red;
+            text-decoration: underline;
+        }
+    }
+
+
+    // Button
+    .elementor-section-wrap {
+        a.elementor-button-link.elementor-size-md, .elementor-button {
+            background-color: $red !important;
+            border: none !important;
+            color: #FFF !important;
+            border-radius: 0 !important;
+            font-family: $header_font !important;
+            padding: $button_padd !important;
+            font-size: 1.8em !important;
+            font-weight: normal !important;
+            cursor: pointer;
+            border-bottom: 5px solid $dark_red !important;
+
+
+            &:hover,
+            &:focus {
+                background-color: lighten($red, 10%) !important;
+                color: #FFF;
+                text-decoration: none;            
+            }
+
+            &::before {
+                content: '\f1bb';
+                font-family: 'FontAwesome';
+                font-size: 0.8em;
+                margin-right: 0.2em;
+            }
+        }
+
+        .elementor-button-info {
+            a.elementor-button-link.elementor-size-md, .elementor-button {
+                background-color: #FFF !important;
+                border-bottom: 0px !important;
+                color: $red !important;
+
+                &:hover,
+                &:focus {
+                    background-color: darken(#FFF, 5%) !important;
+                    color: $red !important;
+                    text-decoration: none;            
+                }
+            }
+        }
+    }
+
+
+
+
+    // Call To Action
+    .call-to-action-section {
+        padding: 2.5em 0px;
+
+        background-color: $red !important;
+    
+        text-align: center;
+
+        h1 {
+            font-size: 3em;
+        }
+
+        h1, p {
+            color: #FFF !important;
+        }
+    }
+
+}

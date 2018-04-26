@@ -1,0 +1,33 @@
+/**
+ *
+ * Variables For Big Trees Site
+ *
+ */
+
+// Fonts Used
+$black_hans: 'Black Han Sans', sans-serif;
+$fira: 'Fira Sans', sans-serif;
+
+$logo_font: $black_hans;
+$body_font: $fira;
+$header_font: $black_hans;
+
+// Colors To Use
+$red: #d7182a;
+$light_red: lighten($red, 15%);
+$dark_red: darken($red, 15%);
+$grey: #323232;
+$text: #3b3b3b;
+$nav: #676363;
+
+// Padding
+$button_padd: 0.8em 0.6em;
+$mobile_button_padd: 0.4em 0.2em;
+
+
+// Bootstrap Overwrite
+$theme-colors: (
+  "primary": $red,
+  "light": #FFF
+);
+$enable-rounded: false;

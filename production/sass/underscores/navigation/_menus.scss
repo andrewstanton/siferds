@@ -1,0 +1,196 @@
+.main-navigation {
+	clear: both;
+	display: block;
+
+	ul {
+		display: none;
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+		text-align: right;
+
+		ul {
+			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+			float: left;
+			position: absolute;
+			top: 100%;
+			left: -999em;
+			z-index: 99999;
+
+			ul {
+				left: -999em;
+				top: 0;
+			}
+
+			li {
+				&:hover > ul,
+				&.focus > ul {
+					left: 100%;
+				}
+			}
+
+			a {
+				width: 200px;
+			}
+
+			:hover > a,
+			.focus > a {
+			}
+
+			a:hover,
+			a.focus {
+			}
+		}
+
+		li:hover > ul,
+		li.focus > ul {
+			left: auto;
+		}
+	}
+
+	li {
+		display: inline-block;
+		position: relative;
+		padding: 0.8em 1em;
+
+		&:hover > a,
+		&.focus > a {
+			color: $red;
+		}
+	}
+
+	a {
+		color: $nav;
+		display: block;
+		text-decoration: none;
+		font-family: $header_font;
+		font-size: 1.4em;
+	}
+
+	.current_page_item > a,
+	.current-menu-item > a,
+	.current_page_ancestor > a,
+	.current-menu-ancestor > a {
+		color: $dark_red;
+	}
+}
+
+/* Small menu. */
+.menu-toggle,
+.main-navigation.toggled ul {
+	display: block;
+}
+.menu-toggle {
+	padding: $mobile_button_padd !important;
+}
+
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+
+	.site-main & {
+		margin: 0 0 1.5em;
+		overflow: hidden;
+	}
+
+	.nav-previous {
+		float: left;
+		width: 50%;
+	}
+
+	.nav-next {
+		float: right;
+		text-align: right;
+		width: 50%;
+	}
+}
+
+
+.footer-nav {
+	clear: both;
+	display: block;
+	margin-bottom: 1em;
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+		text-align: center;
+	}
+
+	li {
+		display: inline-block;
+		position: relative;
+		padding: 0 1em;
+
+		&:hover > a,
+		&.focus > a {
+			text-decoration: underline;
+		}
+	}
+
+	a {
+		color: #FFF;
+		display: block;
+		text-decoration: none;
+		font-family: $header_font;
+		font-size: 2em;
+	}
+}
+
+
+/*
+ * xs only
+ */
+@media ( max-width: map-get($grid-breakpoints, sm) ){
+	.main-navigation {
+		ul {
+			text-align: center;
+		}
+		li {
+			display: block;
+		}
+	}
+}
+
+/*
+ * sm only
+ */
+@media ( min-width: map-get($grid-breakpoints, sm) ) and ( max-width: map-get($grid-breakpoints, md) ){
+	.main-navigation {
+		ul {
+			text-align: center;
+		}
+	}
+}
+
+/*
+ * md only
+ */
+@media ( min-width: map-get($grid-breakpoints, md) ) and (max-width: map-get($grid-breakpoints, lg) ){
+	.main-navigation {
+		li {
+			padding: 0.8em 0.5em;
+		}
+	}
+}
+
+/*
+ * lg only
+ */
+@media ( min-width: map-get($grid-breakpoints, lg) ){
+}
+
+
+
+/*
+ * Above Small Devices
+ */
+@media ( min-width: map-get($grid-breakpoints, sm) ){
+	.menu-toggle {
+		display: none;
+	}
+	.main-navigation ul {
+		display: block;
+	}
+}
