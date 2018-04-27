@@ -20,9 +20,9 @@ function siferds_setup() {
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
 	 * If you're building a theme based on Todd Productions Inc., use a find and replace
-	 * to change 'big_trees' to the name of your theme in all the template files.
+	 * to change 'siferds' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( 'big_trees', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'siferds', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -44,8 +44,8 @@ function siferds_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'menu-1' => esc_html__( 'Primary', 'big_trees' ),
-		'footer-menu' => __( 'Footer', 'big_trees' ),
+		'menu-1' => esc_html__( 'Primary', 'siferds' ),
+		'footer-menu' => __( 'Footer', 'siferds' ),
 	) );
 
 	/*

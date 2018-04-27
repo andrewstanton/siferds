@@ -15,12 +15,6 @@ function siferds_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
-	//Custom Control For Phone Number
-	$wp_customize->add_setting( 'siferds_email' , array(
-		'default' => 'no-reply@bigtreesonthemove.net',
-		'sanitize_callback' => 'sanitize_email'
-		));
-
 	$wp_customize->add_setting( 'siferds_phone' , array(
 		'default' => '(###)  ### - ####',
 		'sanitize_callback' => 'sanitize_text_field'
@@ -31,15 +25,9 @@ function siferds_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_text_field'
 		));
 
-	$wp_customize->add_control(
-		new WP_Customize_Control(
-			$wp_customize,
-			'siferds_email',
-			array(
-				'label' => __( 'Email', 'big_trees' ),
-				'type' => 'text',
-							'section' => 'title_tagline'
-							)
+	$wp_customize->add_setting( 'siferds_twitter' , array(
+		'default' => 'http://twitter.com',
+		'sanitize_callback' => 'sanitize_text_field'
 		));
 
 	$wp_customize->add_control(
@@ -47,7 +35,7 @@ function siferds_customize_register( $wp_customize ) {
 			$wp_customize,
 			'siferds_phone',
 			array(
-				'label' => __( 'Phone', 'big_trees' ),
+				'label' => __( 'Phone', 'siferds' ),
 				'type' => 'text',
 							'section' => 'title_tagline'
 							)
@@ -58,7 +46,18 @@ function siferds_customize_register( $wp_customize ) {
 			$wp_customize,
 			'siferds_fb',
 			array(
-				'label' => __( 'Facebook', 'big_trees' ),
+				'label' => __( 'Facebook', 'siferds' ),
+				'type' => 'text',
+							'section' => 'title_tagline'
+							)
+		));
+
+	$wp_customize->add_control(
+		new WP_Customize_Control(
+			$wp_customize,
+			'siferds_twitter',
+			array(
+				'label' => __( 'Twitter', 'siferds' ),
 				'type' => 'text',
 							'section' => 'title_tagline'
 							)

@@ -18,12 +18,12 @@
         font-family: $header_font !important;
         margin-top: 0px !important;
         margin-bottom: 0.5em;
-        color: $red !important;
+        color: darken($text, 5%) !important;
         text-align: center !important;
     }
 
     h1 {
-        font-size: 3em !important;
+        font-size: 2em !important;
     }
 
     p, ul > li {
@@ -32,9 +32,14 @@
         font-size: 1em !important;
     }
 
+    ul > li {
+        line-height: 200% !important;
+    }
+
     a {
         font-family: $text !important;
         color: $red;
+        font-weight: bold;
 
         &:hover, &:focus {
             color: $red;
@@ -90,6 +95,15 @@
     }
 
 
+    //Yellow
+    .yellow-section.section {
+        background-color: $yellow !important;
+        color: $dark_yellow !important;
+
+        h1, h2, h3, h4, h5, h6, h7, h8, h9, p  {
+            color: $dark_yellow !important;
+        }
+    }
 
 
     // Call To Action
@@ -102,10 +116,30 @@
 
         h1 {
             font-size: 3em;
+            margin-bottom: 5px;
         }
 
         h1, p {
             color: #FFF !important;
+        }
+
+        p {
+            font-style: italic;
+            margin-bottom: 2em;
+        }
+
+        a.btn {
+            border: 5px solid #FFF;
+            padding-left: 1.5em;
+            padding-right: 1.5em;
+            color: #FFF;
+            font-weight: normal !important;
+
+            @include box-shadow(0, 0, 5px, 0, rgba(0, 0, 0, 0.5));
+        
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
 

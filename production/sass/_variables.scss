@@ -14,11 +14,12 @@ $header_font: $black_hans;
 
 // Colors To Use
 $red: #d7182a;
+$yellow: #f0ba2b;
+$dark_yellow: #74580e;
 $light_red: lighten($red, 15%);
-$dark_red: darken($red, 15%);
-$grey: #323232;
+$dark_red: darken($red, 25%);
+$grey: #555;
 $text: #3b3b3b;
-$nav: #676363;
 
 // Padding
 $button_padd: 0.8em 0.6em;
